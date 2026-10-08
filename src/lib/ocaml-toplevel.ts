@@ -262,11 +262,7 @@ function transformTests(testCode: string): string {
     const assertMatch = trimmed.match(/^assert\s*\((.+)\s*=\s*([^=]+)\);?$/);
     if (assertMatch) {
       const expr = assertMatch[1].trim();
-      let expected = assertMatch[2].trim();
-      // Remove trailing ) from expected if present
-      if (expected.endsWith(')')) {
-        expected = expected.slice(0, -1).trim();
-      }
+      const expected = assertMatch[2].trim();
       const testDesc = expr + " = " + expected;
       // Escape quotes in test description
       const escapedDesc = testDesc.replace(/"/g, '\\"');
